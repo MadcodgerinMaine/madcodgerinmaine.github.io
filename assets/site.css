@@ -26,7 +26,6 @@ article blockquote { border-left: 3px solid #ddd; padding-left: 16px; color: #55
 .postitem h3 a { text-decoration: none; }
 .postitem h3 a:hover { text-decoration: underline; }
 .postitem p { font-size: 14.5px; color: #444; }
-.postitem.featured { background: #f6f4ee; border: 1px solid #e3ddcc; border-radius: 6px; padding: 18px 20px; }
 .sitefoot { background: #274e36; color: #e9efe9; text-align: center; padding: 26px 20px; font-size: 13px; }
 .sitefoot a { color: #e9efe9; }
 figure.lead { margin: 0 0 24px; }
