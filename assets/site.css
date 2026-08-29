@@ -31,3 +31,4 @@ article blockquote { border-left: 3px solid #ddd; padding-left: 16px; color: #55
 .sitefoot a { color: #e9efe9; }
 figure.lead { margin: 0 0 24px; }
 .postitem .thumb img { max-width: 420px; width: 100%; height: auto; display: block; border-radius: 3px; margin-bottom: 10px; }
+figure.lead img { max-width: min(100%, 560px); max-height: 65vh; width: auto; height: auto; object-fit: contain; display: block; margin: 0 auto; border-radius: 3px; }
