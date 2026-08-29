@@ -27,7 +27,8 @@
   main { max-width: 1000px; margin: 0 auto; padding: 70px 24px 60px; }
   main h2 { font-size: 34px; font-weight: 500; margin-bottom: 6px; }
   .clickpic { font-size: 14px; margin-bottom: 34px; }
-  .blogs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 26px; }
+  .blogs { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  @media (max-width: 640px) { .blogs { grid-template-columns: 1fr; } }
   .blog a.pic { display: block; }
   .blog img { width: 100%; aspect-ratio: 1 / 0.92; object-fit: cover; display: block; }
   .blog .pic-placeholder { width: 100%; aspect-ratio: 1 / 0.92; background: #e8e4dc; display: flex; align-items: center; justify-content: center; color: #8a8375; font-size: 13px; text-align: center; padding: 10px; }
@@ -35,9 +36,7 @@
   .blog p { font-size: 12.5px; line-height: 1.7; }
 
   /* Tools & Apps */
-  .toolsapps { max-width: 1000px; margin: 0 auto; padding: 0 24px 70px; }
   .toolsapps h2 { font-size: 28px; font-weight: 500; margin-bottom: 10px; }
-  .toolsapps h2 a { color: inherit; }
   .toolsapps p { font-size: 14px; max-width: 760px; }
 
   footer { background: #274e36; color: #e9efe9; text-align: center; padding: 26px 20px; font-size: 13px; }
@@ -84,13 +83,14 @@
       <h4>Observations, Opinions, Rants</h4>
       <p>My views on people, community, government, and the world at large continue to morph, change, and evolve. I&rsquo;ve been a Republican, a Democrat, a Libertarian, and an Independent. I&rsquo;ve worked hard on community efforts, and I&rsquo;ve been skeptical of their value. And I still don&rsquo;t know what to make of many of my fellow humans.</p>
     </div>
+      <div class="blog">
+      <a class="pic" href="/tools-apps/"><img src="images/hero-tools.jpg" alt="Hand tools laid out on a wooden table"></a>
+      <h4>Tools &amp; Apps I Use</h4>
+      <p>Sometimes people ask me about a tool or app I use to do something, track something, etc. Then they&rsquo;ll either ask me to send them a link and I forget, or they say they&rsquo;ll remember it but they don&rsquo;t, and then they end up asking me again. Rather than go back and forth about these things, I&rsquo;ve collected a list of my favorites <a href="/tools-apps/">here</a> with a brief description of each, so I can just point people to the site. Enjoy!</p>
+    </div>
+  </div>
   </div>
 </main>
-
-<div class="toolsapps">
-  <h2><a href="/tools-apps">Tools &amp; Apps I Use</a></h2>
-  <p>Sometimes people ask me about a tool or app I use to do something, track something, etc. Then they&rsquo;ll either ask me to send them a link and I forget, or they say they&rsquo;ll remember it but they don&rsquo;t, and then they end up asking me again. Rather than go back and forth about these things, I&rsquo;ve collected a list of my favorites <a href="/tools-apps">here</a> with a brief description of each, so I can just point people to the site. Enjoy!</p>
-</div>
 
 <footer>
   Madcodger &middot; <a href="/privacy-policy">Privacy Policy</a>
