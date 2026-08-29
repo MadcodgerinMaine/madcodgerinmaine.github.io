@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 420" font-family="Arial Narrow, Archivo Narrow, sans-serif">
+  <rect width="630" height="420" fill="#cbb68c"/>
+  <text x="315" y="52" text-anchor="middle" font-size="13" letter-spacing="4" fill="#6b5a42" font-weight="bold">BLUEBERRY MEADOWS</text>
+  <text x="315" y="92" text-anchor="middle" font-size="34" letter-spacing="1" fill="#3b2f23" font-weight="bold">FERTILIZER MIX CALCULATOR</text>
+  <rect x="185" y="108" width="260" height="26" fill="#3e6b35" rx="2"/>
+  <text x="315" y="126" text-anchor="middle" font-size="13" letter-spacing="2" fill="#f5f1e6" font-weight="bold">MASTERBLEND 5-11-26 SYSTEM</text>
+
+  <!-- crop buttons row -->
+  <g font-size="15" font-weight="bold">
+    <rect x="60" y="158" width="160" height="42" rx="5" fill="#e9dfc6" stroke="#8a7457" stroke-width="2"/>
+    <text x="140" y="185" text-anchor="middle" fill="#4a3d2c">Fruiting</text>
+    <rect x="235" y="158" width="160" height="42" rx="5" fill="#3e6b35" stroke="#2e5227" stroke-width="2"/>
+    <text x="315" y="185" text-anchor="middle" fill="#f5f1e6">Legumes</text>
+    <rect x="410" y="158" width="160" height="42" rx="5" fill="#e9dfc6" stroke="#8a7457" stroke-width="2"/>
+    <text x="490" y="185" text-anchor="middle" fill="#4a3d2c">Alliums</text>
+  </g>
+
+  <!-- tag card -->
+  <rect x="60" y="224" width="510" height="166" rx="6" fill="#f5f1e6" stroke="#8a7457" stroke-width="2"/>
+  <rect x="60" y="224" width="510" height="14" fill="#3e6b35"/>
+  <g fill="#f5f1e6">
+    <rect x="80" y="229" width="10" height="4"/><rect x="112" y="229" width="10" height="4"/><rect x="144" y="229" width="10" height="4"/><rect x="176" y="229" width="10" height="4"/><rect x="208" y="229" width="10" height="4"/><rect x="240" y="229" width="10" height="4"/><rect x="272" y="229" width="10" height="4"/><rect x="304" y="229" width="10" height="4"/><rect x="336" y="229" width="10" height="4"/><rect x="368" y="229" width="10" height="4"/><rect x="400" y="229" width="10" height="4"/><rect x="432" y="229" width="10" height="4"/><rect x="464" y="229" width="10" height="4"/><rect x="496" y="229" width="10" height="4"/><rect x="528" y="229" width="10" height="4"/>
+  </g>
+  <text x="84" y="272" font-size="24" letter-spacing="1" fill="#3b2f23" font-weight="bold">LEGUMES — POD PUSHER</text>
+  <text x="84" y="292" font-size="12" fill="#6b5a42">Beans · Peas — the pod pusher · Soil drench</text>
+  <line x1="84" y1="302" x2="546" y2="302" stroke="#8a7457" stroke-dasharray="4 4"/>
+  <g font-size="15" fill="#3b2f23">
+    <text x="84" y="330" font-weight="bold">Masterblend 5-11-26</text>
+    <text x="84" y="358" font-weight="bold">Epsom salt</text>
+    <text x="84" y="386" font-weight="bold" fill="#6b5a42" font-size="12">+ Calcium nitrate, in mixing order…</text>
+  </g>
+  <g font-size="24" fill="#3e6b35" font-weight="bold" text-anchor="end">
+    <text x="440" y="332">3<tspan font-size="13" fill="#6b5a42">g</tspan></text>
+    <text x="546" y="332">15<tspan font-size="13" fill="#6b5a42">g</tspan></text>
+    <text x="440" y="360">1.5<tspan font-size="13" fill="#6b5a42">g</tspan></text>
+    <text x="546" y="360">7.5<tspan font-size="13" fill="#6b5a42">g</tspan></text>
+  </g>
+</svg>
