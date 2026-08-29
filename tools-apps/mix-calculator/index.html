@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blueberry Meadows Mix Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: #cbb68c;
+    background-image: repeating-linear-gradient(0deg, rgba(59,47,35,0.03) 0px, rgba(59,47,35,0.03) 1px, transparent 1px, transparent 5px);
+    font-family: 'Public Sans', system-ui, sans-serif;
+    color: #3b2f23;
+    padding: 20px 14px 40px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .col { width: 100%; max-width: 430px; }
+  .masthead { text-align: center; margin-bottom: 18px; }
+  .masthead .eyebrow { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; color: #6b5a42; }
+  .masthead h1 { font-family: 'Archivo Narrow', 'Arial Narrow', sans-serif; font-weight: 700; font-size: 30px; letter-spacing: 0.02em; text-transform: uppercase; color: #3b2f23; margin-top: 2px; }
+  .masthead .npk { display: inline-block; margin-top: 6px; font-family: 'Archivo Narrow', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.15em; color: #f5f1e6; background: #3e6b35; padding: 3px 12px; border-radius: 2px; }
+  .group { margin-bottom: 14px; }
+  .group-label { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #6b5a42; margin-bottom: 6px; }
+  .seg { display: grid; gap: 6px; }
+  .seg.crops { grid-template-columns: repeat(3, 1fr); }
+  .seg.two { grid-template-columns: repeat(2, 1fr); }
+  .seg button { font-family: 'Public Sans', system-ui, sans-serif; font-size: 13px; font-weight: 600; line-height: 1.2; padding: 12px 6px; border-radius: 4px; cursor: pointer; border: 1.5px solid #8a7457; background: #e9dfc6; color: #4a3d2c; transition: background 0.12s, color 0.12s; }
+  .seg button:focus-visible { outline: 3px solid #3e6b35; outline-offset: 1px; }
+  .seg button.on { background: #3e6b35; border-color: #2e5227; color: #f5f1e6; }
+  .tag { margin-top: 20px; background: #f5f1e6; border-radius: 6px; border: 1.5px solid #8a7457; box-shadow: 0 3px 0 rgba(59,47,35,0.25); overflow: hidden; }
+  .tag-stitch { height: 14px; background: #3e6b35; background-image: repeating-linear-gradient(90deg, transparent 0 8px, rgba(245,241,230,0.85) 8px 14px); background-size: 22px 3px; background-repeat: repeat-x; background-position: 0 center; }
+  .tag-head { padding: 14px 16px 8px; border-bottom: 1px dashed #8a7457; }
+  .tag-head h2 { font-family: 'Archivo Narrow', sans-serif; text-transform: uppercase; font-size: 21px; letter-spacing: 0.04em; color: #3b2f23; }
+  .tag-head .sub { font-size: 12px; color: #6b5a42; margin-top: 2px; }
+  .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr; padding: 6px 16px 2px; align-items: baseline; }
+  .cols .hdr { font-family: 'Archivo Narrow', sans-serif; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: #6b5a42; text-align: right; padding: 8px 0 4px; }
+  .cols .hdr:first-child { text-align: left; }
+  .ing { font-size: 13.5px; font-weight: 600; padding: 9px 0; }
+  .amt { font-family: 'Archivo Narrow', sans-serif; font-weight: 700; font-size: 26px; text-align: right; color: #3e6b35; padding: 4px 0; }
+  .amt span { font-size: 13px; font-weight: 600; color: #6b5a42; margin-left: 2px; }
+  .rowline { grid-column: 1 / -1; border-top: 1px solid #ddd2b8; }
+  .note { margin: 8px 16px 14px; padding: 10px 12px; font-size: 12.5px; line-height: 1.45; background: #e9dfc6; border-left: 3px solid #3e6b35; border-radius: 0 4px 4px 0; color: #4a3d2c; }
+  .foot { text-align: center; margin-top: 16px; font-size: 11px; color: #6b5a42; }
+  .jugbtn { display: block; width: 100%; margin-top: 16px; font-family: 'Archivo Narrow', sans-serif; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.08em; padding: 12px; border-radius: 4px; cursor: pointer; border: 1.5px solid #8a7457; background: #e9dfc6; color: #3e6b35; }
+  .jugbtn:focus-visible { outline: 3px solid #3e6b35; outline-offset: 1px; }
+  .jugs { margin-top: 10px; background: #f5f1e6; border: 1.5px solid #8a7457; border-radius: 6px; padding: 14px 16px; font-size: 13px; line-height: 1.5; }
+  .jugs h3 { font-family: 'Archivo Narrow', sans-serif; text-transform: uppercase; font-size: 15px; letter-spacing: 0.05em; color: #3b2f23; margin-bottom: 8px; }
+  .jugs p { margin-bottom: 8px; color: #4a3d2c; }
+  .jugs p:last-child { margin-bottom: 0; }
+  @media (prefers-reduced-motion: reduce) { .seg button { transition: none; } }
+</style>
+</head>
+<body>
+<div class="col">
+  <header class="masthead">
+    <div class="eyebrow">Blueberry Meadows</div>
+    <h1>Mix Calculator</h1>
+    <div class="npk">MASTERBLEND 5-11-26 SYSTEM</div>
+  </header>
+
+  <div class="group">
+    <div class="group-label">Crop</div>
+    <div class="seg crops" id="cropSeg"></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Medium</div>
+    <div class="seg two" id="mediumSeg"></div>
+  </div>
+
+  <div class="group" id="phaseGroup" style="display:none">
+    <div class="group-label">Phase</div>
+    <div class="seg two" id="phaseSeg"></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Strength</div>
+    <div class="seg two" id="strengthSeg"></div>
+  </div>
+
+  <div class="group">
+    <div class="group-label">Measure by</div>
+    <div class="seg two" id="unitsSeg"></div>
+  </div>
+
+  <div class="tag">
+    <div class="tag-stitch"></div>
+    <div class="tag-head">
+      <h2 id="tagTitle"></h2>
+      <div class="sub" id="tagSub"></div>
+    </div>
+    <div class="cols" id="tagCols"></div>
+    <div class="note" id="tagNote"></div>
+  </div>
+
+  <button class="jugbtn" id="jugBtn">How to mix the stock jugs</button>
+  <div class="jugs" id="jugPanel" style="display:none">
+    <h3>Stock Jug Recipes (1-gallon jugs, 100&times; concentrate)</h3>
+    <p><strong>Jug A — Masterblend + Epsom:</strong> 378 g Masterblend 5-11-26 + 189 g Epsom salt. Fill with warm water, shake until fully dissolved.</p>
+    <p><strong>Jug B — Calcium nitrate:</strong> 378 g calcium nitrate. Fill with water, shake.</p>
+    <p><strong>To use:</strong> ml of stock = grams in the recipe &times; 10, per gallon of water. Add Jug A first, swirl, then Jug B. Never mix A and B together undiluted.</p>
+    <p><strong>Storage:</strong> 6+ months sealed, cool and dark. Each jug makes 100+ gallons of working solution. If crystals form in a cold shed, warm the jug and shake.</p>
+  </div>
+
+  <footer class="foot">Grams per US gallon &middot; dissolve fully between additions</footer>
+</div>
+
+<script>
+const RECIPES = {
+  fruiting: { label: "Fruiting", sub: "Tomato · Pepper · Cucumber",
+    hydro: { mb: 2.4, can: 2.4, ep: 1.2, note: "Classic full-strength reservoir mix. Keep calcium up to prevent blossom-end rot." },
+    soil:  { mb: 2.4, can: 2.4, ep: 1.2, note: "Full-strength drench every 1–2 weeks once flowering starts." } },
+  leafy: { label: "Leafy Greens", sub: "Lettuce · Spinach · Kale · Chard",
+    hydro: { mb: 2.0, can: 2.4, ep: 1.0, note: "Nitrogen-forward for leaf growth; slightly lighter Masterblend keeps K in check." },
+    soil:  { mb: 1.8, can: 2.0, ep: 0.9, note: "Moderate drench — greens burn easily with heavy feeding in soil." } },
+  legumes: { label: "Legumes", sub: "Beans · Peas — the pod pusher",
+    hydro: { mb: 2.4, can: 1.4, ep: 1.2, note: "Reduced nitrogen — legumes fix their own. P and K drive flowering and pod set." },
+    soil:  { mb: 3.0, can: 1.2, ep: 1.5, note: "Pod pusher: low N, strong P-K, extra Mg for pod fill. Bump CaN to 2.0 g/gal once if plants pale." } },
+  roots: { label: "Root Crops", sub: "Carrot · Beet · Radish · Potato",
+    hydro: { mb: 2.6, can: 1.4, ep: 1.2, note: "K-forward for root bulking; too much N gives tops instead of roots." },
+    soil:  { mb: 2.6, can: 1.4, ep: 1.2, note: "Drench between rows. Ease off nitrogen after canopy fills in." } },
+  melons: { label: "Melons & Squash", sub: "Melon · Pumpkin · Winter squash",
+    hydro: { mb: 3.0, can: 2.4, ep: 1.5, note: "Heavy feeders — full calcium plus extra Mg through fruit set and sizing." },
+    soil:  { mb: 3.0, can: 2.4, ep: 1.5, note: "Feed at full rate every 1–2 weeks; these are the hungriest crops in the patch." } },
+  seedlings: { label: "Seedlings", sub: "Starts & transplants, first 3 weeks",
+    hydro: { mb: 0.6, can: 0.6, ep: 0.3, note: "Quarter strength. Step up gradually after true leaves multiply." },
+    soil:  { mb: 0.6, can: 0.6, ep: 0.3, note: "Gentle quarter-strength drench; roots are easily burned at this stage." } },
+  brassicas: { label: "Brassicas", sub: "Broccoli · Cauliflower · Rabe · Brussels · Cabbage · Kohlrabi",
+    hydro: { mb: 2.4, can: 2.6, ep: 1.2, note: "Heavy feeders with a big calcium appetite — extra CaN prevents tipburn in tight heads. Keep feeding steady; stress makes them bolt or button." },
+    soil:  { mb: 2.4, can: 2.6, ep: 1.2, note: "Full-rate drench every 1–2 weeks; brassicas never stop eating. Extra calcium heads off tipburn in cabbage and cauliflower." } },
+  berries: { label: "Berries", sub: "Strawberry · Raspberry · Blackberry",
+    hydro: { mb: 1.8, can: 1.8, ep: 0.9, note: "Salt-sensitive, especially strawberries — run leaner than vegetables. Ease off N once fruit sets to keep flavor concentrated." },
+    soil:  { mb: 1.8, can: 1.8, ep: 0.9, note: "Light drench; berries burn easily. Feed canes in spring and after harvest. Drop calcium nitrate 6–8 weeks before first frost — Masterblend + Epsom alone is fine then; its K helps canes harden for winter." } },
+  alliums: { label: "Alliums", sub: "Onion · Garlic · Leek · Shallot · Scallion", phased: true,
+    hydro: {
+      leaf: { mb: 2.4, can: 2.0, ep: 1.8, note: "Leaf phase: every leaf becomes a bulb ring, so keep nitrogen steady. Alliums want extra Epsom beyond the usual ratio — with stock jugs, add the dry Epsom shown. Scallions stay in this phase for life." },
+      bulb: { mb: 2.6, can: 1.0, ep: 1.8, note: "Bulbing: cut nitrogen hard once day length triggers bulbing — late N makes thick necks that won't cure. Extra Epsom beyond the usual ratio: with stock jugs, add the dry Epsom shown." } },
+    soil: {
+      leaf: { mb: 2.2, can: 1.8, ep: 1.8, note: "Leaf phase: steady N drench builds the leaves that become bulb rings. Alliums want extra Epsom beyond the usual ratio — with stock jugs, add the dry Epsom shown. Scallions stay here for life." },
+      bulb: { mb: 2.6, can: 1.0, ep: 1.8, note: "Bulbing: drop nitrogen once bulbs start sizing (garlic: late spring). K and sulfur drive bulb fill and storage. With stock jugs, add the extra dry Epsom shown." } } }
+};
+const CROP_ORDER = ["fruiting","leafy","legumes","roots","melons","brassicas","berries","alliums","seedlings"];
+const ROWS = [
+  { name: "Masterblend 5-11-26", key: "mb" },
+  { name: "Epsom salt", key: "ep" },
+  { name: "Calcium nitrate", key: "can" }
+];
+let state = { crop: "legumes", medium: "soil", strength: "regular", phase: "leaf", units: "grams" };
+
+document.getElementById("jugBtn").addEventListener("click", function () {
+  const p = document.getElementById("jugPanel");
+  const open = p.style.display !== "none";
+  p.style.display = open ? "none" : "";
+  this.textContent = open ? "How to mix the stock jugs" : "Hide";
+});
+
+function fmt(n) { const v = Math.round(n * 10) / 10; return Number.isInteger(v) ? String(v) : v.toFixed(1); }
+
+function segBtn(label, on, fn) {
+  const b = document.createElement("button");
+  b.textContent = label;
+  if (on) b.className = "on";
+  b.addEventListener("click", fn);
+  return b;
+}
+
+function render() {
+  const cropSeg = document.getElementById("cropSeg");
+  cropSeg.innerHTML = "";
+  CROP_ORDER.forEach(k => cropSeg.appendChild(segBtn(RECIPES[k].label, state.crop === k, () => { state.crop = k; render(); })));
+
+  const mediumSeg = document.getElementById("mediumSeg");
+  mediumSeg.innerHTML = "";
+  mediumSeg.appendChild(segBtn("Hydroponic", state.medium === "hydro", () => { state.medium = "hydro"; render(); }));
+  mediumSeg.appendChild(segBtn("Soil drench", state.medium === "soil", () => { state.medium = "soil"; render(); }));
+
+  const strengthSeg = document.getElementById("strengthSeg");
+  strengthSeg.innerHTML = "";
+  strengthSeg.appendChild(segBtn("Regular (1–2 wk)", state.strength === "regular", () => { state.strength = "regular"; render(); }));
+  strengthSeg.appendChild(segBtn("Light & frequent", state.strength === "light", () => { state.strength = "light"; render(); }));
+
+  const unitsSeg = document.getElementById("unitsSeg");
+  unitsSeg.innerHTML = "";
+  unitsSeg.appendChild(segBtn("Dry grams", state.units === "grams", () => { state.units = "grams"; render(); }));
+  unitsSeg.appendChild(segBtn("Stock jugs (ml)", state.units === "stock", () => { state.units = "stock"; render(); }));
+
+  const r = RECIPES[state.crop];
+  const isPhased = !!r.phased;
+  document.getElementById("phaseGroup").style.display = isPhased ? "" : "none";
+  if (isPhased) {
+    const phaseSeg = document.getElementById("phaseSeg");
+    phaseSeg.innerHTML = "";
+    phaseSeg.appendChild(segBtn("Leaf growth", state.phase === "leaf", () => { state.phase = "leaf"; render(); }));
+    phaseSeg.appendChild(segBtn("Bulbing", state.phase === "bulb", () => { state.phase = "bulb"; render(); }));
+  }
+  const base = isPhased ? r[state.medium][state.phase] : r[state.medium];
+  const mult = state.strength === "light" ? 0.5 : 1;
+
+  document.getElementById("tagTitle").textContent =
+    r.label + (state.crop === "legumes" && state.medium === "soil" ? " — Pod Pusher" : "");
+  document.getElementById("tagSub").textContent =
+    r.sub + " · " + (state.medium === "hydro" ? "Hydroponic reservoir" : "Soil drench")
+    + (isPhased ? (state.phase === "leaf" ? " · leaf phase" : " · bulbing phase") : "")
+    + (state.strength === "light" ? " · half strength" : "");
+
+  const extraEp = Math.max(0, base.ep - base.mb / 2);
+  const rowDefs = state.units === "grams"
+    ? [
+        { name: "Masterblend 5-11-26", val: base.mb * mult, unit: "g" },
+        { name: "Epsom salt", val: base.ep * mult, unit: "g" },
+        { name: "Calcium nitrate", val: base.can * mult, unit: "g" }
+      ]
+    : [
+        { name: "Jug A (MB + Epsom)", val: base.mb * mult * 10, unit: "ml" },
+        { name: "Jug B (Ca nitrate)", val: base.can * mult * 10, unit: "ml" }
+      ].concat(extraEp > 0.05 ? [{ name: "+ dry Epsom salt", val: extraEp * mult, unit: "g" }] : []);
+
+  const cols = document.getElementById("tagCols");
+  cols.innerHTML = '<div class="hdr">Ingredient</div><div class="hdr">1 gal</div><div class="hdr">5 gal</div>';
+  rowDefs.forEach((row, i) => {
+    if (i > 0) { const l = document.createElement("div"); l.className = "rowline"; cols.appendChild(l); }
+    const ing = document.createElement("div"); ing.className = "ing"; ing.textContent = row.name; cols.appendChild(ing);
+    const a1 = document.createElement("div"); a1.className = "amt"; a1.innerHTML = fmt(row.val) + "<span>" + row.unit + "</span>"; cols.appendChild(a1);
+    const a5 = document.createElement("div"); a5.className = "amt"; a5.innerHTML = fmt(row.val * 5) + "<span>" + row.unit + "</span>"; cols.appendChild(a5);
+  });
+
+  document.getElementById("tagNote").textContent = base.note;
+}
+render();
+</script>
+</body>
+</html>
