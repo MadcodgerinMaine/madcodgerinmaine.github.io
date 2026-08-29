@@ -14,7 +14,7 @@ h1 { font-size: 32px; font-weight: 500; margin-bottom: 8px; }
 article { font-size: 16px; }
 article p { margin: 0 0 18px; }
 article h2, article h3, article h4 { font-weight: 500; margin: 28px 0 12px; }
-article img { max-width: 100%; height: auto; display: block; margin: 20px auto; }
+article img { max-width: min(100%, 560px); max-height: 65vh; width: auto; height: auto; object-fit: contain; display: block; margin: 20px auto; border-radius: 3px; }
 article figure { margin: 20px 0; }
 article figcaption { font-size: 13px; color: #777; text-align: center; }
 article ul, article ol { margin: 0 0 18px 24px; }
