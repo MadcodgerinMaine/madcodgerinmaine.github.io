@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madcodger. Stuff I do. Things I think.</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: 'Poppins', -apple-system, 'Helvetica Neue', Arial, sans-serif; color: #1f1f1f; background: #fff; line-height: 1.65; }
+
+  /* Hero with overlaid nav */
+  .hero {
+    background-image: url('images/hero-tools.jpg');
+    background-size: cover; background-position: center;
+    min-height: 92vh; display: flex; flex-direction: column;
+  }
+  .topnav { display: flex; align-items: center; justify-content: center; gap: 8px 28px; flex-wrap: wrap; padding: 22px 24px 8px; }
+  .topnav img.navlogo { width: 34px; height: 34px; object-fit: contain; }
+  .topnav a { color: #fff; text-decoration: none; font-size: 14px; font-weight: 400; text-shadow: 0 1px 4px rgba(0,0,0,0.45); }
+  .topnav a:hover, .topnav a.current { text-decoration: underline; }
+  .hero-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px 20px 60px; }
+  .hero-center img.biglogo { width: 110px; height: auto; margin-bottom: 26px; }
+  .hero-center h1 { color: #fff; font-weight: 500; font-size: clamp(26px, 4.2vw, 44px); line-height: 1.3; text-shadow: 0 2px 10px rgba(0,0,0,0.45); }
+
+  /* My Blogs */
+  main { max-width: 1000px; margin: 0 auto; padding: 70px 24px 60px; }
+  main h2 { font-size: 34px; font-weight: 500; margin-bottom: 6px; }
+  .clickpic { font-size: 14px; margin-bottom: 34px; }
+  .blogs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 26px; }
+  .blog a.pic { display: block; }
+  .blog img { width: 100%; aspect-ratio: 1 / 0.92; object-fit: cover; display: block; }
+  .blog .pic-placeholder { width: 100%; aspect-ratio: 1 / 0.92; background: #e8e4dc; display: flex; align-items: center; justify-content: center; color: #8a8375; font-size: 13px; text-align: center; padding: 10px; }
+  .blog h4 { font-size: 17px; font-weight: 500; margin: 12px 0 6px; }
+  .blog p { font-size: 12.5px; line-height: 1.7; }
+
+  /* Tools & Apps */
+  .toolsapps { max-width: 1000px; margin: 0 auto; padding: 0 24px 70px; }
+  .toolsapps h2 { font-size: 28px; font-weight: 500; margin-bottom: 10px; }
+  .toolsapps h2 a { color: inherit; }
+  .toolsapps p { font-size: 14px; max-width: 760px; }
+
+  footer { background: #274e36; color: #e9efe9; text-align: center; padding: 26px 20px; font-size: 13px; }
+  footer a { color: #e9efe9; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <nav class="topnav">
+    <img class="navlogo" src="images/logo.webp" alt="">
+    <a class="current" href="/">Home</a>
+    <a href="/tools-apps">Tools &amp; Apps</a>
+    <a href="/living-off-grid">Living Off Grid</a>
+    <a href="/growing-building">Growing + Building</a>
+    <a href="/opinions-rants">Opinions + Rants</a>
+    <a href="/about-me">About Me</a>
+    <a href="/contact">Contact</a>
+    <a href="/cheapwinequest">CWQ</a>
+    <a href="/privacy-policy">Privacy Policy</a>
+  </nav>
+  <div class="hero-center">
+    <img class="biglogo" src="images/logo.webp" alt="Madcodger">
+    <h1>I live in Maine. Winters are long and dark.<br>So I think, tinker, and learn.</h1>
+  </div>
+</div>
+
+<main>
+  <h2>My Blogs</h2>
+  <p class="clickpic">Click the Pic to go there</p>
+  <div class="blogs">
+    <div class="blog">
+      <a class="pic" href="/living-off-grid"><img src="images/living-off-grid.jpeg" alt="Vertical solar panels on the red studio building in snow"></a>
+      <h4>Living Off Grid (Solar)</h4>
+      <p>We could throw a rock from our driveway and hit the utility poles that run alongside our property, but my wife and I decided to be completely off grid, and I decided do most of the work on that system myself. We haven&rsquo;t regretted that for a minute and I hope I can help others who want to try something similar.</p>
+    </div>
+    <div class="blog">
+      <a class="pic" href="/growing-building"><img src="images/growing-building.jpeg" alt="Red tractor barn with a sunflower mural and metal rooster sculptures"></a>
+      <h4>Growing and Building</h4>
+      <p>In addition to its great solar exposure, one of the main reasons we purchased this property was to feel closer to nature, grow more of our own food, and build what we wanted to build (where and how we wanted to build it) with an emphasis on performance instead of convention. This is where I share some of what we&rsquo;re doing and our fun, occasionally unconventional experiments.</p>
+    </div>
+    <div class="blog">
+      <a class="pic" href="/opinions-rants"><img src="images/opinions-rants.jpeg" alt="Fiery sunset over the treeline at Blueberry Meadows"></a>
+      <h4>Observations, Opinions, Rants</h4>
+      <p>My views on people, community, government, and the world at large continue to morph, change, and evolve. I&rsquo;ve been a Republican, a Democrat, a Libertarian, and an Independent. I&rsquo;ve worked hard on community efforts, and I&rsquo;ve been skeptical of their value. And I still don&rsquo;t know what to make of many of my fellow humans.</p>
+    </div>
+  </div>
+</main>
+
+<div class="toolsapps">
+  <h2><a href="/tools-apps">Tools &amp; Apps I Use</a></h2>
+  <p>Sometimes people ask me about a tool or app I use to do something, track something, etc. Then they&rsquo;ll either ask me to send them a link and I forget, or they say they&rsquo;ll remember it but they don&rsquo;t, and then they end up asking me again. Rather than go back and forth about these things, I&rsquo;ve collected a list of my favorites <a href="/tools-apps">here</a> with a brief description of each, so I can just point people to the site. Enjoy!</p>
+</div>
+
+<footer>
+  Madcodger &middot; <a href="/privacy-policy">Privacy Policy</a>
+</footer>
+
+</body>
+</html>
