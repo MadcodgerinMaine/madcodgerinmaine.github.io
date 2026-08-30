@@ -21,7 +21,50 @@
 <p class="" style="white-space:pre-wrap;">Well, OK, I probably won’t call. But I might email you back. To be frank, it all depends on why you’re contacting me and what you want, and replies are definitely NOT guaranteed. But hey, here’s a form, so I’ll leave it all up to you.</p>
 <p class="" style="white-space:pre-wrap;">As for how I’ll use this info, I might add your contact information into my personal contacts IF we strike up an online friendship, but I won’t sell or trade your information. I don’t use this site to make money – it’s just a place to express myself and have some fun.</p>
 <p class="sqsrte-large" style="white-space:pre-wrap;">Anyway, if you want to get in touch and have me <strong><em>possibly</em></strong> write back, this is where you try that.</p>
-<figure><img src="https://images.squarespace-cdn.com/content/v1/67c752eabd61021c97ef2a1d/1722377438.238501-AJVIWERPQMESIJLCLLMI/imgg-od3-umjwzxkl.png?format=original" alt="Placeholder"/></figure></article>
+<figure><img src="https://images.squarespace-cdn.com/content/v1/67c752eabd61021c97ef2a1d/1722377438.238501-AJVIWERPQMESIJLCLLMI/imgg-od3-umjwzxkl.png?format=original" alt="Placeholder"/></figure>
+<div class="contact-form-wrap">
+<form action="https://formspree.io/f/FORM_ID_HERE" method="POST" class="mc-contact-form">
+  <div class="fg">
+    <label for="cf-name">Name</label>
+    <input type="text" id="cf-name" name="name" required placeholder="Your name">
+  </div>
+  <div class="fg">
+    <label for="cf-email">Email address</label>
+    <input type="email" id="cf-email" name="email" required placeholder="you@example.com">
+  </div>
+  <div class="fg">
+    <label for="cf-subject">Subject</label>
+    <input type="text" id="cf-subject" name="subject" placeholder="What's this about?">
+  </div>
+  <div class="fg">
+    <label for="cf-message">Message</label>
+    <textarea id="cf-message" name="message" rows="6" required placeholder="Write your message here…"></textarea>
+  </div>
+  <div class="fg newsletter">
+    <label class="check">
+      <input type="checkbox" name="newsletter" value="Yes, add me to the maybe-one-day newsletter list">
+      <span>I MIGHT (one day, not now) send out a newsletter about the stuff I&rsquo;m doing. If I do, and you want to receive it, check this box. If not, don&rsquo;t. If you check the box, I&rsquo;ll save your email in a Google Sheet but I won&rsquo;t sell it, trade it, etc., but it will be in that Google Sheet. If you don&rsquo;t check the box, I&rsquo;ll just have your email address in my contacts (because you emailed me) but I won&rsquo;t put you on the &ldquo;maybe one day&rdquo; newsletter list. It&rsquo;s that simple. Your choice.</span>
+    </label>
+  </div>
+  <button type="submit" class="send-btn">Send Message</button>
+</form>
+</div>
+<style>
+.mc-contact-form { max-width: 560px; }
+.mc-contact-form .fg { margin-bottom: 16px; }
+.mc-contact-form label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 5px; }
+.mc-contact-form input[type=text], .mc-contact-form input[type=email], .mc-contact-form textarea {
+  width: 100%; padding: 10px 12px; border: 1px solid #bbb; border-radius: 4px;
+  font-family: 'Poppins', sans-serif; font-size: 15px; box-sizing: border-box; background: #fff;
+}
+.mc-contact-form input:focus, .mc-contact-form textarea:focus { border-color: #3e6b35; outline: none; box-shadow: 0 0 4px rgba(62,107,53,0.25); }
+.mc-contact-form .newsletter .check { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; font-size: 13.5px; line-height: 1.6; color: #444; }
+.mc-contact-form .newsletter input { margin-top: 4px; flex: none; }
+.send-btn { background: #274e36; color: #fff; border: none; padding: 12px 26px; border-radius: 4px;
+  font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; }
+.send-btn:hover { background: #3e6b35; }
+</style>
+</article>
 </main>
 <footer class="sitefoot">Madcodger &middot; <a href="/privacy-policy/">Privacy Policy</a></footer>
 </body>
