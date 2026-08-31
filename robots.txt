@@ -1,0 +1,3 @@
+# madcodger.com — all well-behaved crawlers welcome
+User-agent: *
+Allow: /
