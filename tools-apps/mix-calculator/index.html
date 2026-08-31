@@ -100,14 +100,14 @@
   <button class="jugbtn" id="jugBtn">How to mix the stock jugs</button>
   <div class="jugs" id="jugPanel" style="display:none">
     <h3>Stock Jug Recipes (1-gallon jugs, 100&times; concentrate)</h3>
-    <p><strong>Jug A — Masterblend + Epsom:</strong> 378 g Masterblend 5-11-26 + 189 g Epsom salt. Fill with warm water, shake until fully dissolved.</p>
-    <p><strong>Jug B — Calcium nitrate:</strong> 378 g calcium nitrate. Fill with water, shake.</p>
-    <p><strong>To use:</strong> ml of stock = grams in the recipe &times; 10, per gallon of water. Add Jug A first, swirl, then Jug B. Never mix A and B together undiluted.</p>
-    <p><strong>Storage:</strong> 6+ months sealed, cool and dark. Each jug makes 100+ gallons of working solution. If crystals form in a cold shed, warm the jug and shake.</p>
+    <p><strong>Jug A — Masterblend + Epsom:</strong>&nbsp; 378 g Masterblend 5-11-26 + 189 g Epsom salt. Fill with warm water, shake until fully dissolved.</p>
+    <p><strong>Jug B — Calcium nitrate:</strong>&nbsp; 378 g calcium nitrate. Fill with water, shake.</p>
+    <p><strong>To use:</strong>&nbsp; Milliliters of stock = grams in the recipe &times; 10, per gallon of water. Add Jug A first, swirl, then Jug B. Never mix A and B together undiluted.</p>
+    <p><strong>Storage:</strong>&nbsp; 6+ months sealed, cool and dark. Each jug makes 100+ gallons of working solution. If crystals form in a cold shed, warm the jug and shake.</p>
   </div>
 
   <div class="disclaimer">
-  <strong>Use at your own risk.</strong> I built this calculator, with help from Claude (an AI assistant), for my own garden and my own fertilizer supplies. It&rsquo;s shared as-is, with no promise that it&rsquo;s accurate, complete, or right for your plants, your water, your products, or your conditions. Fertilizers are chemicals: read your product labels, use your own judgment, and start conservatively. By using this tool you agree that you&rsquo;re responsible for your own results, and that I&rsquo;m not liable for anything that happens to your plants, your property, or anything else because you used it.
+  <strong>Use at your own risk.</strong> I built this calculator, with help from Claude (an AI assistant), for my own garden and my own fertilizer supplies. It&rsquo;s shared as-is, with no promise that it&rsquo;s accurate, complete, or right for your plants, your water, your products, or your conditions. Fertilizers are chemicals:&nbsp; Read your product labels, use your own judgment, and start conservatively. By using this tool you agree that you&rsquo;re responsible for your own results, and that I&rsquo;m not liable for anything that happens to your plants, your property, or anything else because you used it.
 </div>
 <footer class="foot">Grams per US gallon &middot; dissolve fully between additions<br>&copy; 2022&ndash;2026 Madcodger. All rights reserved.</footer>
 </div>
@@ -122,7 +122,7 @@ const RECIPES = {
     soil:  { mb: 1.8, can: 2.0, ep: 0.9, note: "Moderate drench — greens burn easily with heavy feeding in soil." } },
   legumes: { label: "Legumes", sub: "Beans · Peas — the pod pusher",
     hydro: { mb: 2.4, can: 1.4, ep: 1.2, note: "Reduced nitrogen — legumes fix their own. P and K drive flowering and pod set." },
-    soil:  { mb: 3.0, can: 1.2, ep: 1.5, note: "Pod pusher: low N, strong P-K, extra Mg for pod fill. Bump CaN to 2.0 g/gal once if plants pale." } },
+    soil:  { mb: 3.0, can: 1.2, ep: 1.5, note: "Pod pusher:\u00a0 Low N, strong P-K, extra Mg for pod fill. Bump CaN to 2.0 g/gal once if plants pale." } },
   roots: { label: "Root Crops", sub: "Carrot · Beet · Radish · Potato",
     hydro: { mb: 2.6, can: 1.4, ep: 1.2, note: "K-forward for root bulking; too much N gives tops instead of roots." },
     soil:  { mb: 2.6, can: 1.4, ep: 1.2, note: "Drench between rows. Ease off nitrogen after canopy fills in." } },
@@ -140,11 +140,11 @@ const RECIPES = {
     soil:  { mb: 1.8, can: 1.8, ep: 0.9, note: "Light drench; berries burn easily. Feed canes in spring and after harvest. Drop calcium nitrate 6–8 weeks before first frost — Masterblend + Epsom alone is fine then; its K helps canes harden for winter." } },
   alliums: { label: "Alliums", sub: "Onion · Garlic · Leek · Shallot · Scallion", phased: true,
     hydro: {
-      leaf: { mb: 2.4, can: 2.0, ep: 1.8, note: "Leaf phase: every leaf becomes a bulb ring, so keep nitrogen steady. Alliums want extra Epsom beyond the usual ratio — with stock jugs, add the dry Epsom shown. Scallions stay in this phase for life." },
-      bulb: { mb: 2.6, can: 1.0, ep: 1.8, note: "Bulbing: cut nitrogen hard once day length triggers bulbing — late N makes thick necks that won't cure. Extra Epsom beyond the usual ratio: with stock jugs, add the dry Epsom shown." } },
+      leaf: { mb: 2.4, can: 2.0, ep: 1.8, note: "Leaf phase:\u00a0 Every leaf becomes a bulb ring, so keep nitrogen steady. Alliums want extra Epsom beyond the usual ratio — with stock jugs, add the dry Epsom shown. Scallions stay in this phase for life." },
+      bulb: { mb: 2.6, can: 1.0, ep: 1.8, note: "Bulbing:\u00a0 Cut nitrogen hard once day length triggers bulbing — late N makes thick necks that won't cure. Extra Epsom beyond the usual ratio:\u00a0 With stock jugs, add the dry Epsom shown." } },
     soil: {
-      leaf: { mb: 2.2, can: 1.8, ep: 1.8, note: "Leaf phase: steady N drench builds the leaves that become bulb rings. Alliums want extra Epsom beyond the usual ratio — with stock jugs, add the dry Epsom shown. Scallions stay here for life." },
-      bulb: { mb: 2.6, can: 1.0, ep: 1.8, note: "Bulbing: drop nitrogen once bulbs start sizing (garlic: late spring). K and sulfur drive bulb fill and storage. With stock jugs, add the extra dry Epsom shown." } } }
+      leaf: { mb: 2.2, can: 1.8, ep: 1.8, note: "Leaf phase:\u00a0 Steady N drench builds the leaves that become bulb rings. Alliums want extra Epsom beyond the usual ratio — with stock jugs, add the dry Epsom shown. Scallions stay here for life." },
+      bulb: { mb: 2.6, can: 1.0, ep: 1.8, note: "Bulbing:\u00a0 Drop nitrogen once bulbs start sizing (garlic:\u00a0 Late spring). K and sulfur drive bulb fill and storage. With stock jugs, add the extra dry Epsom shown." } } }
 };
 const CROP_ORDER = ["fruiting","leafy","legumes","roots","melons","brassicas","berries","alliums","seedlings"];
 const ROWS = [
