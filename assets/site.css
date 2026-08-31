@@ -31,3 +31,8 @@ article blockquote { border-left: 3px solid #ddd; padding-left: 16px; color: #55
 figure.lead { margin: 0 0 24px; }
 .postitem .thumb img { max-width: 420px; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; height: auto; display: block; border-radius: 3px; margin-bottom: 10px; }
 figure.lead img { max-width: min(100%, 560px); max-height: 65vh; width: auto; height: auto; object-fit: contain; display: block; margin: 0 auto; border-radius: 3px; }
+.pinned { background: #f6f4ee; border: 1px solid #e3ddcc; border-radius: 6px; padding: 16px 20px; margin-bottom: 34px; }
+.pinned h3 { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
+.pinned p { font-size: 14.5px; color: #444; margin: 0; }
+.pinned-links { margin-top: 8px !important; }
+.pinned-links a { font-weight: 500; }
