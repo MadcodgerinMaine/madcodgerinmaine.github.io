@@ -29,7 +29,10 @@
   .clickpic { font-size: 14px; margin-bottom: 34px; }
   .blogs { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
   @media (max-width: 640px) { .blogs { grid-template-columns: 1fr; } }
-  .blog a.pic { display: block; }
+  .blog { display: block; text-decoration: none; color: inherit; border-radius: 4px; }
+  .blog:hover img { opacity: 0.92; }
+  .blog:hover h4 { text-decoration: underline; }
+  .blog:focus-visible { outline: 3px solid #274e36; outline-offset: 4px; }
   .blog img { width: 100%; aspect-ratio: 1 / 0.92; object-fit: cover; display: block; }
   .blog .pic-placeholder { width: 100%; aspect-ratio: 1 / 0.92; background: #e8e4dc; display: flex; align-items: center; justify-content: center; color: #8a8375; font-size: 13px; text-align: center; padding: 10px; }
   .blog h4 { font-size: 17px; font-weight: 500; margin: 12px 0 6px; }
@@ -66,28 +69,28 @@
 
 <main>
   <h2>My Blogs</h2>
-  <p class="clickpic">Click the Pic to go there</p>
+  <p class="clickpic">Click anywhere on a section to go there</p>
   <div class="blogs">
-    <div class="blog">
-      <a class="pic" href="/living-off-grid"><img src="images/living-off-grid.jpeg" alt="Vertical solar panels on the red studio building in snow"></a>
+    <a class="blog" href="/living-off-grid">
+      <img src="images/living-off-grid.jpeg" alt="Vertical solar panels on the red studio building in snow">
       <h4>Living Off Grid (Solar)</h4>
       <p>We could throw a rock from our driveway and hit the utility poles that run alongside our property, but my wife and I decided to be completely off grid, and I decided do most of the work on that system myself. We haven&rsquo;t regretted that for a minute and I hope I can help others who want to try something similar.</p>
-    </div>
-    <div class="blog">
-      <a class="pic" href="/growing-building"><img src="images/growing-building.jpeg" alt="Red tractor barn with a sunflower mural and metal rooster sculptures"></a>
+    </a>
+    <a class="blog" href="/growing-building">
+      <img src="images/growing-building.jpeg" alt="Red tractor barn with a sunflower mural and metal rooster sculptures">
       <h4>Growing and Building</h4>
       <p>In addition to its great solar exposure, one of the main reasons we purchased this property was to feel closer to nature, grow more of our own food, and build what we wanted to build (where and how we wanted to build it) with an emphasis on performance instead of convention. This is where I share some of what we&rsquo;re doing and our fun, occasionally unconventional experiments.</p>
-    </div>
-    <div class="blog">
-      <a class="pic" href="/opinions-rants"><img src="images/opinions-rants.jpeg" alt="Fiery sunset over the treeline at Blueberry Meadows"></a>
+    </a>
+    <a class="blog" href="/opinions-rants">
+      <img src="images/opinions-rants.jpeg" alt="Fiery sunset over the treeline at Blueberry Meadows">
       <h4>Observations, Opinions, Rants</h4>
       <p>My views on people, community, government, and the world at large continue to morph, change, and evolve. I&rsquo;ve been a Republican, a Democrat, a Libertarian, and an Independent. I&rsquo;ve worked hard on community efforts, and I&rsquo;ve been skeptical of their value. And I still don&rsquo;t know what to make of many of my fellow humans.</p>
-    </div>
-      <div class="blog">
-      <a class="pic" href="/tools-apps/"><img src="images/tools-apps.jpg" alt="Smartphone with app icons on a wooden table"></a>
+    </a>
+      <a class="blog" href="/tools-apps/">
+      <img src="images/tools-apps.jpg" alt="Smartphone with app icons on a wooden table">
       <h4>Tools &amp; Apps I Use</h4>
-      <p>Sometimes people ask me about a tool or app I use to do something, track something, etc. Then they&rsquo;ll either ask me to send them a link and I forget, or they say they&rsquo;ll remember it but they don&rsquo;t, and then they end up asking me again. Rather than go back and forth about these things, I&rsquo;ve collected a list of my favorites <a href="/tools-apps/">here</a> with a brief description of each, so I can just point people to the site. Enjoy!</p>
-    </div>
+      <p>Sometimes people ask me about a tool or app I use to do something, track something, etc. Then they&rsquo;ll either ask me to send them a link and I forget, or they say they&rsquo;ll remember it but they don&rsquo;t, and then they end up asking me again. Rather than go back and forth about these things, I&rsquo;ve collected a list of my favorites here with a brief description of each, so I can just point people to the site. Enjoy!</p>
+    </a>
   </div>
   </div>
 </main>
