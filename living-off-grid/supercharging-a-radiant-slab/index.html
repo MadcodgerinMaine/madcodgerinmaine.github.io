@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supercharging a Radiant Slab with Off-Grid Solar — Madcodger</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="sitehead">
+  <a href="/"><img class="navlogo" src="/images/logo.webp" alt="Madcodger"></a>
+  <nav>
+    <a href="/">Home</a><a href="/tools-apps/">Tools &amp; Apps</a><a href="/living-off-grid/">Living Off Grid</a><a href="/growing-building/">Growing + Building</a><a href="/opinions-rants/">Opinions + Rants</a><a href="/about-me/">About Me</a><a href="/contact/">Contact</a><a href="/privacy-policy/">Privacy Policy</a>
+  </nav>
+</header>
+<main class="article">
+<p class="crumb"><a href="/living-off-grid/">&larr; Living Off Grid</a></p>
+<h1>Supercharging a Radiant Slab with Off-Grid Solar</h1>
+<figure class="lead"><img src="/images/posts/supercharging-radiant-slab.jpg" alt=""></figure>
+<article>
+<p>On sunny winter days we turn surplus solar electricity into heat
+stored in our concrete radiant slabs. The buildings then coast through
+the night, and often through several cloudy days, on very little
+propane. Here is how we do it, using two different heat sources in two
+buildings.</p>
+<h2 id="the-setup">The setup</h2>
+<p>We live off grid in Maine with no utility connection. Each building
+has its own PV array and battery bank. A generator is the last resort,
+and we try hard not to use it. We got through the past two winters
+without it, though that was before we added an air-to-water heat pump
+and an electric vehicle.</p>
+<p>Both buildings have hydronic radiant tubing in 6-inch concrete slabs.
+Each slab sits on R10 foam, with R10 around all four edges and another
+four feet of R10 extending horizontally out from the slab. The main
+house has R43 walls and an R65 ceiling. The studio is a little less, but
+not far off.</p>
+<h2 id="the-idea">The idea</h2>
+<p>A radiant slab is a big battery. It just stores heat instead of
+electricity. Most people with a radiant slab never use it that way,
+because they pay for every unit of energy that goes into it. Solar
+owners are in a different position:&nbsp; Free energy falls from the sky, even
+on cold winter days. Grid-tied owners can bank that surplus as utility
+credits. Off grid, we have to find somewhere else to put it, and the
+slab is a very good place.</p>
+<p>So once the electric batteries are full (or nearly so) and the EV has
+enough charge for the day’s driving, we push the extra energy into the
+slabs. Thanks to its thermal mass, a slab absorbs heat slowly and
+releases it slowly, for hours or even days. A well-insulated building
+doesn’t overheat; it just stays comfortable. Capture enough and you can
+skip the boiler entirely. I call heating the slab a few degrees past
+what the building needs right now “supercharging” the slab. It can cut a
+heating bill, and fossil fuel use, significantly.</p>
+<h2 id="the-rule-we-never-break">The rule we never break</h2>
+<p>Heat storage must never drain the electric batteries. Every session
+stops early if the batteries start to suffer, and always well before
+sunset. By choice we have no grid to fall back on, and we don’t like
+running the generator, so Home Assistant watches the batteries closely
+and always puts them ahead of the slab.</p>
+<h2 id="the-controller">The controller</h2>
+<p>Home Assistant runs both buildings with the same three-part
+pattern:</p>
+<ol type="1">
+<li><strong>ON conditions.</strong> Every 5 minutes during daylight,
+check battery state of charge, charging rate, and the day’s solar
+forecast. If there is real surplus, set a “solar for radiant heat” flag
+for that building.</li>
+<li><strong>Actions.</strong> When the flag turns on, raise the
+thermostat setpoints and the heat source’s water temperature. When it
+turns off, put everything back to normal.</li>
+<li><strong>OFF conditions.</strong> End the session if any of these
+happen:
+<ul>
+<li>Batteries drop below 60% (a number we’re still tuning)</li>
+<li>Batteries discharge hard for 5 minutes</li>
+<li>The forecast shows no more spare solar</li>
+<li>PV output falls too low after noon</li>
+<li>It is 45 minutes before sunset</li>
+</ul></li>
+</ol>
+<h2 id="main-house-mitsubishi-ecodan-air-to-water-heat-pump">Main house:&nbsp; Mitsubishi Ecodan air-to-water heat pump</h2>
+<h3 id="why-we-moved-beyond-resistance-heat">Why we moved beyond
+resistance heat</h3>
+<p>Last winter the main house used the electric elements in its buffer
+tank to displace propane, the same approach the studio still uses (see
+below). It worked. In February 2026, not a warm month in Maine, we
+burned propane on exactly one day while keeping the garage at 60°F or
+better.</p>
+<p>But those elements draw about 7,000 W. In November and December, with
+far fewer sunny days, there isn’t enough sun to run the house and feed
+that load regularly. We needed more heat per watt.</p>
+<p>We already had Mitsubishi air-to-air heat pumps in the living space
+upstairs and were very happy with them. There was one in the garage too,
+but a wall unit can’t do what a warm slab does:&nbsp; Drive in at dusk covered
+in snow and slop, and by morning the floor is dry. Only a heated slab
+does that.</p>
+<p>There are two practical ways to run a slab on a heat pump:&nbsp; Geothermal, which costs a fortune up front, or air-to-water. When we
+built in 2024, the air-to-water units available here didn’t meet our
+needs. A friend who is a Mitsubishi wholesaler told me the Ecodan might
+reach the US market in 2026. I knew it from overseas forums, where
+owners praised its efficiency, its sub-zero performance, and the
+Mitsubishi reliability we already trusted. When he called to say it was
+coming, I ordered one of the first units installed in Maine, and my HVAC
+contractor took one of the first local training classes. We installed it
+this past summer and waited for cold weather.</p>
+<h3 id="water-temperature">Water temperature</h3>
+<p>Normally we run 95°F water through the slabs. That is enough to heat
+these buildings through a Maine winter, because we designed them for
+efficiency from the start. Friends with hydronic slabs run much hotter
+water or water-glycol mixes. Most of them, in a reasonably
+well-insulated building, could probably turn it down and save money
+without noticing any difference.</p>
+<p>Supercharging is different. You need to move as much heat as possible
+during a few hours of sun. So during a “solar session,” our name for a
+supercharging period, we raise the Ecodan’s target from 95°F to 109°F.
+We do this through an add-on Wi-Fi module from ProtoArt, a company in
+the Netherlands. You could build the equivalent with an ESP32, but
+ProtoArt’s module is proven by many users, works natively with Home
+Assistant, and I was in a hurry.</p>
+<h3 id="zones-and-short-cycling">Zones and short cycling</h3>
+<p>The system has two zones. The large zone is four loops in an
+oversized two-car garage. The small zone is two short loops in the entry
+foyer and a full bath. A 26-gallon buffer tank helps, but with 109°F
+water and only the small zone calling, the Ecodan still wants to
+short-cycle. Home Assistant prevents most of that by opening the garage
+loops when the foyer is about to be satisfied, even if the garage
+doesn’t strictly need heat (details below). A mixing valve set just
+below 110°F protects the slab.</p>
+<h3 id="parts-list">Parts list</h3>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Part</th>
+<th>What we have</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Heat pump</td>
+<td>Mitsubishi Ecodan split system:&nbsp; WUZ-SA24NMZ outdoor unit (R32) and
+ERSF-NM6E hydrobox with FTC7 controller</td>
+</tr>
+<tr class="even">
+<td>Storage</td>
+<td>Mestek BT26-H 26-gallon buffer tank, water only, no electric
+elements in use</td>
+</tr>
+<tr class="odd">
+<td>To the slab</td>
+<td>Mixing valve (set just below 110°F), then a manifold with Uponor
+thermal actuators. Two zones, Foyer and Garage, each on its own
+thermostat</td>
+</tr>
+<tr class="even">
+<td>Backup heat</td>
+<td>Rinnai propane on-demand tankless water heater (not a boiler, and I
+know they won’t warranty it for this use), used only if the Ecodan can’t
+keep up or the batteries are low</td>
+</tr>
+<tr class="odd">
+<td>Control link</td>
+<td>ProtoArt CN105 Wi-Fi module on the Ecodan FTC7 control board,
+reporting to Home Assistant over MQTT. Local only, no cloud service</td>
+</tr>
+<tr class="even">
+<td>Sensors</td>
+<td>Pipe and tank sensors on Ecodan out and return, buffer core and
+outlet, mixing valve out, and slab return, connected to an ESP32 board
+that talks to Home Assistant</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-a-session-runs">How a session runs</h3>
+<ol type="1">
+<li><strong>Start.</strong> House batteries are full, or have averaged
+more than 6,000 W of charging for 15 minutes. The forecast (a model I
+built with Claude) shows more than 5 kWh of spare solar after the
+batteries refill. Batteries are above 60%, and it is at least 1.5 hours
+before sunset.</li>
+<li><strong>Actions.</strong> Foyer thermostat to 70°F and Ecodan water
+to 109°F through the ProtoArt module. Garage held at 60°F to start (see
+staging below).</li>
+<li><strong>Stop.</strong> After noon with PV below 3,000 W for 10
+minutes, or any battery rule from the overview, or 45 minutes before
+sunset. Foyer back to 67°F, garage to 60°F, Ecodan to 95°F. A safety-net
+reset runs 40 minutes before sunset in case nothing else fired.</li>
+</ol>
+<p>On cloudy days, or when the electricity is needed elsewhere, the
+Ecodan still heats the same zones at 95°F. We just don’t supercharge. If
+the energy picture gets worse than that, Home Assistant tells the Ecodan
+to take a break and the propane tankless heater takes over. If our
+modeling is right, that will happen only a few days a year, about 6.5
+gallons of propane for an entire Maine winter. Time will tell.</p>
+<h3 id="why-we-stage-the-garage-zone">Why we stage the garage zone</h3>
+<p>On a November day (37–59°F outside during the session, 25°F the night
+before) we saw two problems:</p>
+<ul>
+<li><strong>Both zones open:</strong>&nbsp; The compressor ran at 70–72 Hz
+early, then held at exactly 58 Hz once it was above about 42°F outside.
+The slab absorbed heat as fast as the Ecodan made it, and the water
+stalled at 95–96°F. Fine for heating the building, useless for
+supercharging.</li>
+<li><strong>Foyer only:</strong>&nbsp; Even the compressor’s minimum speed
+(about 26 Hz on a mild day) made more heat than the small zone could
+take. Water overshot to 110–111°F and the compressor shut off for a few
+minutes. That looked like short cycling to us, buffer tank or not.</li>
+</ul>
+<p><strong>The fix:</strong>&nbsp; Start with the foyer only, so the buffer
+tank heats quickly. When the buffer core passes 105°F, open the garage
+zone too (setpoint 70°F). If the core drops below 98°F after the garage
+has been open at least 60 minutes, close it again. A daily counter in
+Home Assistant allows at most three garage openings per day, since each
+one cycles four thermal actuators. After the third, the garage simply
+stays open until the session ends. And if the garage calls for heat on
+its own, it gets it regardless.</p>
+<h3 id="open-questions">Open questions</h3>
+<ul>
+<li><strong>Energy reporting.</strong> The ProtoArt “energy consumed”
+counter didn’t increase while the Ecodan ran, so we don’t rely on it
+yet. There is no flow meter, so heat output and COP aren’t measured. I’d
+like to add that eventually; I really want to know our COP on an ongoing
+basis.</li>
+</ul>
+<h2 id="studio-old-school-electric-elements-in-the-buffer-tank">Studio:&nbsp; “Old school” electric elements in the buffer tank</h2>
+<p>The studio keeps the system we used in the house last winter to prove
+the concept. We considered an Ecodan here too, but couldn’t justify the
+cost for a building that sometimes sits unused for days and isn’t our
+residence. The studio’s primary heat is a propane boiler feeding a
+buffer tank, plus a wood stove we light a few times a year, partly for
+the ambiance and partly because we like the feel of wood heat.</p>
+<p>The buffer tank’s electric elements can supply enough heat for this
+smaller building without running at full output. Each element has three
+internal loops, and you can disconnect one or two to reduce output. I
+pulled two loops out of the top element, which dropped total output from
+about 7,000 W to about 4,600 W (bottom element full, top element on one
+loop). We also added about 4,000 W of PV to the studio roof in summer
+2026. Because the studio uses far less electricity than the house, that
+is plenty to run a less efficient heat source on most sunny days.</p>
+<p>A two-stage aquastat ties it together:&nbsp; On sunny days the elements
+heat the tank and the boiler stays off. Otherwise the elements stay off
+and the boiler runs. As long as the tank is hot enough, the boiler never
+fires.</p>
+<h3 id="parts-list-1">Parts list</h3>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 87%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Part</th>
+<th>What we have</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Primary heat</td>
+<td>Propane boiler feeding a buffer tank</td>
+</tr>
+<tr class="even">
+<td>Solar heat</td>
+<td>Electric elements in the buffer tank</td>
+</tr>
+<tr class="odd">
+<td>To the slab</td>
+<td>Mixing valve, limiting water temperature to about 100°F</td>
+</tr>
+<tr class="even">
+<td>Sensors</td>
+<td>Same in-tank and on-pipe sensors as the house, on an ESP32 board
+talking to Home Assistant:&nbsp; Buffer core, tank outlet, mixing valve out,
+slab return, boiler out, and boiler return</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-a-session-runs-1">How a session runs</h3>
+<ol type="1">
+<li><strong>Start.</strong> Every 5 minutes, there must be enough spare
+solar in the forecast (or, if the forecast is unavailable, the panels
+must be carrying the elements right now). It also needs at least 3 kW of
+PV or a full battery, which stops early-morning on/off cycling. No new
+session starts in the last 1.5 hours before sunset.</li>
+<li><strong>Actions.</strong> Save the current thermostat setpoint, turn
+the elements on, and send a notification.</li>
+<li><strong>Thermostat follows the tank.</strong> The slab thermostat
+goes to 72°F only once the tank core reaches 115°F. If the core stays
+below 95°F for 3 minutes, the thermostat returns to its saved setpoint,
+because the boiler fires near 90°F. This keeps the slab drawing solar
+heat, not propane.</li>
+<li><strong>Tank limit.</strong> Elements pause at 130°F and resume at
+125°F. A separate 135°F safety automation can shut them down if
+needed.</li>
+<li><strong>Stop.</strong> After noon, if studio PV can’t cover the
+elements plus the building’s loads for 10 minutes; or the spare solar is
+used up; or the battery is below 60% or discharging more than 2 kW for 5
+minutes; or the room is above 72°F; or it is 45 minutes before sunset.
+Elements off, thermostat back to its saved setting (65°F if
+unknown).</li>
+</ol>
+<h2 id="was-it-worth-it">Was it worth it?</h2>
+<p>If saving money is your only test, probably not. Propane isn’t that
+expensive, the Ecodan wasn’t cheap, and this took real time to set
+up.</p>
+<p>But money wasn’t the goal. We wanted to heat our buildings without
+depending on outside energy, not even on cutting wood if it came to
+that. The propane truck making it up our driveway in a hard Maine
+winter, and the long-term availability of propane itself, are
+dependencies we wanted to shrink. We also wanted to cut our fossil fuel
+use substantially. This system does both. We can now heat the house and
+the studio for almost nothing across an entire winter.</p>
+<p>As I told my wholesaler friend:&nbsp; I can make electricity right here on
+the property, but I can’t make propane. And there is a lot to be said
+for looking out at a cold Maine day, turning the heat up a notch, and
+knowing it won’t cost a penny more.</p>
+</article>
+</main>
+<footer class="sitefoot">&copy; 2022&ndash;2026 Madcodger. All rights reserved. &middot; <a href="/privacy-policy/">Privacy Policy</a></footer>
+</body>
+</html>

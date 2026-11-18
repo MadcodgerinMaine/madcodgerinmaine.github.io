@@ -36,3 +36,8 @@ figure.lead img { max-width: min(100%, 560px); max-height: 65vh; width: auto; he
 .pinned p { font-size: 14.5px; color: #444; margin: 0; }
 .pinned-links { margin-top: 8px !important; }
 .pinned-links a { font-weight: 500; }
+
+article table { border-collapse: collapse; margin: 0 0 18px; font-size: 15px; }
+article th, article td { border: 1px solid #ddd; padding: 6px 10px; vertical-align: top; text-align: left; }
+article th { background: #f5f5f5; font-weight: 500; }
+article td:first-child { white-space: nowrap; }
