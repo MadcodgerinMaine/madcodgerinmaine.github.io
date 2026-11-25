@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Three Loads, One Sun: How Home Assistant Referees EV Charging, Slab Heating and the House Battery Off-Grid — Madcodger</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="sitehead">
+  <a href="/"><img class="navlogo" src="/images/logo.webp" alt="Madcodger"></a>
+  <nav>
+    <a href="/">Home</a><a href="/tools-apps/">Tools &amp; Apps</a><a href="/living-off-grid/">Living Off Grid</a><a href="/growing-building/">Growing + Building</a><a href="/opinions-rants/">Opinions + Rants</a><a href="/about-me/">About Me</a><a href="/contact/">Contact</a><a href="/privacy-policy/">Privacy Policy</a>
+  </nav>
+</header>
+<main class="article">
+<p class="crumb"><a href="/living-off-grid/">&larr; Living Off Grid</a></p>
+<h1>Three Loads, One Sun:&nbsp; How Home Assistant Referees EV Charging, Slab Heating and the House Battery Off-Grid</h1>
+<figure class="lead"><img src="/images/posts/home-assistant-energy-use-pic.jpeg" alt=""></figure>
+<article>
+<p>We live off-grid in rural Maine. The main house runs on EG4 inverters and about 100 kWh of EG4 LiFePO4 batteries, fed by three PV strings (a ground mount, a gambrel roof and a vertical wall array). The house is heated by a Mitsubishi Ecodan air-to-water heat pump feeding a radiant slab through a buffer tank. And our EV, a Kia we call Evie, charges from a Grizzl-E charger set to 24 A (about 5.9 kW).</p>
+<p>In winter, those three things fight over the same limited sunshine. This post explains how we got Home Assistant (HA) to referee that fight automatically.</p>
+<h2 id="the-three-competing-goals">The three competing goals</h2>
+<ol type="1">
+<li><strong>Keep the house battery healthy.</strong>&nbsp; The batteries have to carry us through the night. For us, the true daily low point is around 8:30 AM, just before a ridge and tree line stop shading the panels. Everything else is negotiable; this isn’t.</li>
+<li><strong>Keep the EV ready to drive.</strong>&nbsp; Evie normally charges to an 80% limit.</li>
+<li><strong>Store surplus sun as heat.</strong>&nbsp; A concrete slab is a huge, cheap thermal battery. On a sunny day, “supercharging” it by running the heat pump hotter than normal means less non-solar heat is needed that night and the next day.</li>
+</ol>
+<p>Any one of these, left alone, will happily eat all the solar. The trick is a clear pecking order plus good numbers.</p>
+<h2 id="the-pecking-order">The pecking order</h2>
+<ul>
+<li><strong>Floor:&nbsp; </strong>Below 60% house battery, nothing discretionary runs. Period.</li>
+<li><strong>Priority 1:&nbsp; Normal heat.</strong>&nbsp; If the Foyer drops below about 66.5°F or the Garage below about 59.5°F, Evie waits. The house’s ordinary comfort comes first.</li>
+<li><strong>Priority 2:&nbsp; Evie, up to her charge limit.</strong></li>
+<li><strong>Priority 3:&nbsp; Slab supercharging</strong>, using whatever is left after Evie’s share.</li>
+</ul>
+<p>Two manual overrides sit on top:&nbsp; A “charge Evie now regardless of heating” switch, and a one-tap “charge Evie to 100%” script for trip days ahead of bad weather. That script pauses solar logic, charges at full power, and puts the 80% limit and automatic solar charging back when the car is unplugged.</p>
+<h2 id="the-numbers-that-drive-it">The numbers that drive it</h2>
+<p><strong>Forecast.</strong>&nbsp; The Open-Meteo Solar Forecast integration gives per-string production forecasts, refreshed every 30 minutes. We trust only 80% of what it promises, to cover charging losses and forecast optimism.</p>
+<p><strong>Spare solar today.</strong>&nbsp; One HA template sensor answers “how much energy can I give away today?” It takes forecast PV remaining (× 0.8), subtracts the energy needed to refill the house battery, subtracts the house’s other loads (15-minute average × hours until sunset), and keeps a 5 kWh reserve. A second sensor subtracts what Evie still needs; that remainder is the slab’s budget.</p>
+<p><strong>Seven-day outlook.</strong>&nbsp; A dashboard card we call “The Big Question” projects the battery’s 8:30 AM level for each of the next seven days. If a gray stretch is coming, it’s obvious at a glance whether we can afford to spend energy today.</p>
+<h2 id="how-evie-charges">How Evie charges</h2>
+<p>The charger runs at one of six levels:&nbsp; Off, 8, 12, 16, 20 or 24 A (about 0.245 kW per amp). In daylight:</p>
+<ul>
+<li>If spare solar covers everything Evie needs, or the house battery is essentially full (97%+), charge at 24 A.</li>
+<li>If spare solar is nearly gone, stop.</li>
+<li>Otherwise, match the measured surplus. HA looks at the 15-minute average of battery charging plus what Evie is already drawing, and picks the highest step that fits. It steps up only after 10 stable minutes and down after 5, so passing clouds don’t make it hunt.</li>
+</ul>
+<p>Overnight, Evie can charge from the house battery at 24 A, but only if the next day’s forecast is strong (60 kWh or more) and the battery starts at 80% or above. It stops at 70%.</p>
+<p><strong>A hard-won lesson on control:&nbsp; </strong>Don’t depend on cloud services to start and stop charging. We moved the Grizzl-E off the manufacturer’s cloud and onto HA’s own OCPP integration, so start/stop and current limits happen on the local network in seconds. We use the car’s cloud connection only to read its state of charge and set its charge limit, never to start or stop charging. A car-side “stop” can leave the car refusing power until it’s re-plugged, which defeats the whole scheme. The charger’s DIP switches remain the hardware ceiling; software can only go lower.</p>
+<h2 id="how-the-slab-gets-supercharged">How the slab gets supercharged</h2>
+<p>Every 5 minutes in daylight, HA checks whether to start a slab session. It needs all of these:&nbsp; The house battery above 60%, a heating zone below 70°F, batteries averaging more than 4 kW of charging over 15 minutes (or already full), and more than 5 kWh of forecast spare solar after the battery is refilled. Evie’s charging is added back into the battery reading so the EV’s draw doesn’t hide real surplus. She has her own share of the budget.</p>
+<p>When a session starts, HA raises the Foyer and Garage thermostats to 70°F and raises the Ecodan’s flow temperature from 95°F to 109°F. The Garage zone is staged so the buffer tank heats first, then opens to the slab.</p>
+<p>The session ends if the battery falls below 60%, if the batteries drain more than 2 kW for 10 minutes, or 45 minutes before sunset. While the battery is below 95%, it also ends if the batteries stop charging, the spare-solar forecast goes negative, or (after noon) PV drops below 3 kW. Above 95% those last checks are ignored on purpose. When the battery is full, the inverters throttle PV down to match the load, so “low PV” there means “plenty of sun with nowhere to go,” not “clouds.” A safety-net automation resets all thermostats to normal 40 minutes before sunset, in case a session was interrupted.</p>
+<p>For more on the slab side, including the studio’s buffer-tank version, see <a href="/living-off-grid/supercharging-a-radiant-slab/">Supercharging a Radiant Slab with Off-Grid Solar</a>.</p>
+<h2 id="what-weve-learned">What we’ve learned</h2>
+<ul>
+<li><strong>Use the forecast for the budget and the battery for the moment.</strong>&nbsp; The forecast decides how much you can spend today. The battery’s actual charge rate decides whether to spend it right now.</li>
+<li><strong>Write the priorities down first, then code them.</strong>&nbsp; Most of the logic is just that pecking order.</li>
+<li><strong>Thermal mass is the cheapest battery you’ll ever own.</strong>&nbsp; The slab soaks up surplus that would otherwise be clipped.</li>
+<li><strong>Keep control local, and keep one automation in charge of each device.</strong>&nbsp; Two automations fighting over one charger is a recipe for chaos.</li>
+<li><strong>Never let discretionary loads limit PV.</strong>&nbsp; The automations only decide where surplus goes; they never touch the solar equipment.</li>
+</ul>
+<p>None of this needs exotic hardware, just Home Assistant, a solar forecast, an OCPP-capable charger and a few well-thought-out template sensors. Happy to share more detail with anyone building something similar.</p>
+</article>
+</main>
+<footer class="sitefoot">&copy; 2022&ndash;2026 Madcodger. All rights reserved. &middot; <a href="/privacy-policy/">Privacy Policy</a></footer>
+</body>
+</html>
